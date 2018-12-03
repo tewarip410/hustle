@@ -1,0 +1,51 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  margin:0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size:18px;
+  color:#926239;
+  line-height:1.6;
+}
+
+#showcase{
+  background-image:url('../Images/achieve.jpeg');
+  background-size:cover;
+  background-position:center;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:0 20px;
+}
+
+#showcase h1{
+  font-size:70px;
+  line-height:1.2;
+  color:#3090C7;
+}
+
+#showcase p{
+  font-size:20px;
+  color: #3090C7;
+}
+
+#showcase .button{
+  font-size:18px;
+  text-decoration:none;
+  color:#3090C7;
+  border:#3090C7 1px solid;
+  padding:10px 20px;
+  border-radius:10px;
+  margin-top:20px;
+}
+
+#showcase .button:hover{
+  background:#31c49e;
+  color:#3090C7;
+}
