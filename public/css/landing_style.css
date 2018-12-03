@@ -12,7 +12,7 @@ body{
 }
 
 #showcase{
-  background-image:url('../Images/achieve.jpeg');
+  background-image:url('../img/achieve.jpeg');
   background-size:cover;
   background-position:center;
   height:100vh;
