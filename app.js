@@ -34,7 +34,11 @@ app.get('/dashboard', function(req, res) {
   
   res.render('dashboard');
 });
+/*app.post('/dashboard',function(req,res){
 
+  console.log(req.body.habit)  
+  console.log(req.body.type)  
+});*/
 app.listen(port, function(){
   console.log('Node js Express js Tutorial');
 });
