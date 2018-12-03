@@ -19,9 +19,12 @@
   "homepage": "https://github.com/tewarip410/hustle#readme",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "firebase-admin": "^6.3.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {
+    "firebase": "^5.6.0",
     "nodemon": "^1.18.7"
   }
 }
