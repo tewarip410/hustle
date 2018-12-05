@@ -31,7 +31,7 @@
 </script>
   <script type="text/javascript">
     initApp = function() {
-      firebase.auth().onAuthStateChanged(function(user) {
+      firebase.auth().onAuthStateChanged(function(user) { 
         if (user) {
           // User is signed in.
           var displayName = user.displayName;
@@ -79,14 +79,18 @@
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Hustle</a>
+
+        <!--Logout Button-->
+        <button type="submit" class="btn btn-info">Logout</button>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
        
       </nav>
     </header>
-    <form class="formclass" method="POST" action="/dashboard">
-        <h2>Add Habit</h2>
+    <form class="formclass" method="POST" action="/dashboard"> 
+        <h2>Add Habit</h2> 
         <div class="form-row">
           <div class="col">
             <input name = "habit" value="" type="text" class="form-control" placeholder="Habit name">
