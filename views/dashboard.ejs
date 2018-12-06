@@ -31,8 +31,11 @@
   
 </script>
   <script type="text/javascript">
+  
+  var count = 1;
     initApp = function() {
       firebase.auth().onAuthStateChanged(function(user) { 
+        
         if (user) {
           // User is signed in.
           var displayName = user.displayName;
@@ -40,7 +43,6 @@
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
           var uid = user.uid;
-          uid.value = uid.toString();
           var phoneNumber = user.phoneNumber;
           var providerData = user.providerData;
           user.getIdToken().then(function(accessToken) {
@@ -57,10 +59,6 @@
               providerData: providerData
             }, null, '  ');
           });
-          firebase.database().ref('users/' + uid).set({
-            username: displayName,
-            email: email
-          });
           document.getElementById('userdisplayname').innerHTML = displayName;
           document.getElementById('displaypic').src = photoURL;
         } else {
@@ -73,17 +71,39 @@
         console.log(error);
       });
     };
-
+    
     window.addEventListener('load', function() {
       initApp()
     });
     function signout(){
+      
       firebase.auth().signOut();
       //alert('You have now been logged out.');
       window.location='/';
-  }
-  var database = firebase.database();
-  
+    }
+    /*var dbfire;
+    dbfire = firebase.database().ref('users').child(JSON.stringify("asdf"));*/
+    function lala(){
+      alert("asdf");
+         
+        lalaauth()
+
+      }
+      lalaauth = function(){
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            alert(user.uid);
+            var dbfire;
+            dbfire = firebase.database().ref('users');
+            dbfire.set({
+              habit: "asdf"
+            });
+          } else {
+            // No user is signed in.
+            alert('not signed');
+          }
+        });
+      }
   </script>
   <body>
       
@@ -110,18 +130,18 @@
         </div>
       </nav>
     </header>
-    <form class="formclass" method="POST" action="/dashboard"> 
+    <form class="formclass" > 
         <h2>Add Habit</h2> 
         <div class="form-row">
           <div class="col">
-            <input name = "habit" type="text" class="form-control" placeholder="Habit name">
+            <input id = "habit" type="text" class="form-control" placeholder="Habit name">
           </div>
           <div class="col">
-            <input name = "type" type="text" class="form-control" placeholder="Habit Type">
+            <input id = "type" type="text" class="form-control" placeholder="Habit Type">
           </div>
         </div>
         <br>
-        <button type="submit" value="submit" class="btn btn-info">Add Habit</button>
+        <button class="btn btn-info" type="submit" value="submit" onclick=" lala();">Add Habit</button>
       </form>
 
       
