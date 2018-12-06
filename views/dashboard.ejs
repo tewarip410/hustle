@@ -39,6 +39,7 @@
           var emailVerified = user.emailVerified;
           var photoURL = user.photoURL;
           var uid = user.uid;
+          uid.value = uid.toString();
           var phoneNumber = user.phoneNumber;
           var providerData = user.providerData;
           user.getIdToken().then(function(accessToken) {
@@ -69,6 +70,12 @@
     window.addEventListener('load', function() {
       initApp()
     });
+    function signout(){
+      firebase.auth().signOut();
+      alert('You have now been logged out.');
+      window.location='/';
+  }
+
   </script>
   <body>
       
@@ -81,7 +88,7 @@
         <a class="navbar-brand" href="#">Hustle</a>
 
         <!--Logout Button-->
-        <button type="submit" class="btn btn-info">Logout</button>
+        <button type="submit" class="btn btn-info" onclick="signout();">Logout</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -93,14 +100,14 @@
         <h2>Add Habit</h2> 
         <div class="form-row">
           <div class="col">
-            <input name = "habit" value="" type="text" class="form-control" placeholder="Habit name">
+            <input name = "habit" type="text" class="form-control" placeholder="Habit name">
           </div>
           <div class="col">
-            <input name = "type" value = "" type="text" class="form-control" placeholder="Habit Type">
+            <input name = "type" type="text" class="form-control" placeholder="Habit Type">
           </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-info">Add Habit</button>
+        <button type="submit" value="submit" class="btn btn-info">Add Habit</button>
       </form>
       <div class="habitclass">
           <h2>Habits </h2>
