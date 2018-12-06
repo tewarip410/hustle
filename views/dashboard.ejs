@@ -28,6 +28,7 @@
     messagingSenderId: "338815394602"
   };
   firebase.initializeApp(config);
+  
 </script>
   <script type="text/javascript">
     initApp = function() {
@@ -56,6 +57,12 @@
               providerData: providerData
             }, null, '  ');
           });
+          firebase.database().ref('users/' + uid).set({
+            username: displayName,
+            email: email
+          });
+          document.getElementById('userdisplayname').innerHTML = displayName;
+          document.getElementById('displaypic').src = photoURL;
         } else {
           // User is signed out.
           document.getElementById('sign-in-status').textContent = 'Signed out';
@@ -72,10 +79,11 @@
     });
     function signout(){
       firebase.auth().signOut();
-      alert('You have now been logged out.');
+      //alert('You have now been logged out.');
       window.location='/';
   }
-
+  var database = firebase.database();
+  
   </script>
   <body>
       
@@ -88,12 +96,18 @@
         <a class="navbar-brand" href="#">Hustle</a>
 
         <!--Logout Button-->
-        <button type="submit" class="btn btn-info" onclick="signout();">Logout</button>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-       
+        
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <img id = "displaypic">
+                <h1 id="userdisplayname"></h1>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <button class="btn btn-info" onclick="signout();">Logout</button>
+            </ul>
+        </div>
       </nav>
     </header>
     <form class="formclass" method="POST" action="/dashboard"> 
@@ -109,6 +123,8 @@
         <br>
         <button type="submit" value="submit" class="btn btn-info">Add Habit</button>
       </form>
+
+      
       <div class="habitclass">
           <h2>Habits </h2>
       </div>

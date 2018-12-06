@@ -33,7 +33,6 @@ app.post('/dashboard',function(req,res, next){
 
   ref.set({
     "hi": {
-      lala: req.body.uid,
       habitname: req.body.habit,
       habitype: req.body.type
     }
