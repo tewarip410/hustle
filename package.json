@@ -1,7 +1,7 @@
 {
   "name": "hustle",
   "version": "1.0.0",
-  "description": "",
+  "description": "Our webapp allows users to track their daily progress by adding habits. Users can maintain streaks for their habits based on the number of days they complete a habit (without missing a single day).",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
