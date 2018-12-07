@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-const port = 3000;
+const port = 5000;
 let router = require('express').Router();
 var admin = require("firebase-admin");
 app.use(express.static('public'));
