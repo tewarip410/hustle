@@ -103,7 +103,7 @@
         streak: document.getElementById('streak').value
       });
     }
-    var ref; //= firebase.database().ref().child("users/"+useruiname+"/"+habitkaname);
+  // var ref; //= firebase.database().ref().child("users/"+useruiname+"/"+habitkaname);
 
     function refresh(){
       useruiname = document.getElementById('useruiid2').value;
@@ -111,12 +111,15 @@
     //  alert("users/"+useruiname+"/"+habitkaname);
 
     var ref = firebase.database().ref().child("users/"+useruiname/*+"/"+habitkaname*/);
-     // alert("users/"+useruiname+"/"+habitkaname);
+      alert("users/"+useruiname+"/"+habitkaname);
       ref.on("child_added", snap => {
-          var strk = snap.child("streak").val();
-          alert(strk);
+          var data = snap.child("streak").val();
+          alert(data);
+          //additional add after gargi testing
+          var disp = "Habit name: " + habitkaname + " Streak: " + data;
+          document.getElementById('habitdisplay').innerHTML = disp;
         });
-
+        
     }
   </script>
     
