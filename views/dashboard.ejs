@@ -111,16 +111,18 @@
     //  alert("users/"+useruiname+"/"+habitkaname);
 
     var ref = firebase.database().ref().child("users/"+useruiname/*+"/"+habitkaname*/);
-      alert("users/"+useruiname+"/"+habitkaname);
+      //alert("users/"+useruiname+"/"+habitkaname);
       ref.on("child_added", snap => {
           var data = snap.child("streak").val();
-          alert(data);
+          //alert(data);
           //additional add after gargi testing
           var disp = "Habit name: " + habitkaname + " Streak: " + data;
           alert(disp);
           displayfunction(disp);
-          //document.getElementById('habitdisplay').innerHTML = disp;
-        });
+          document.getElementById('habitdisplay').innerHTML = disp;
+        })
+        
+        ;
         
         
     }
