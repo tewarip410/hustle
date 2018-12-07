@@ -31,8 +31,6 @@
   
 </script>
   <script type="text/javascript">
-  
-  var count = 1;
     initApp = function() {
       firebase.auth().onAuthStateChanged(function(user) { 
         
@@ -81,30 +79,49 @@
       //alert('You have now been logged out.');
       window.location='/';
     }
-    /*var dbfire;
-    dbfire = firebase.database().ref('users').child(JSON.stringify("asdf"));*/
-    function lala(){
-      alert("asdf");
-         
-        lalaauth()
+  
+    var useruiname;
+    var habitkaname;
 
-      }
-      lalaauth = function(){
-      firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            alert(user.uid);
-            var dbfire;
-            dbfire = firebase.database().ref('users');
-            dbfire.set({
-              habit: "asdf"
-            });
-          } else {
-            // No user is signed in.
-            alert('not signed');
-          }
+    var dbfire = firebase.database().ref('users/gargi').child('habits');
+    function lala(){
+      var dbfire = firebase.database().ref('users/gargi').child('habits');
+      useruiname = document.getElementById('useruiid').value;
+      habitkaname = document.getElementById('habit').value;
+      
+      firebase.database().ref('users/' + useruiname).child(''+habitkaname).update({
+        streak: ""
+      });
+    }
+   
+    function updateHabit(){
+      var dbfire = firebase.database().ref('users/gargi').child('habits');
+      useruiname = document.getElementById('useruiid3').value;
+      habitkaname = document.getElementById('habit3').value;
+     // alert(useruiname);
+      firebase.database().ref('users/' + useruiname).child(''+habitkaname).update({
+        streak: document.getElementById('streak').value
+      });
+    }
+    var ref; //= firebase.database().ref().child("users/"+useruiname+"/"+habitkaname);
+
+    function refresh(){
+      useruiname = document.getElementById('useruiid2').value;
+      habitkaname = document.getElementById('habit2').value;
+    //  alert("users/"+useruiname+"/"+habitkaname);
+
+    var ref = firebase.database().ref().child("users/"+useruiname/*+"/"+habitkaname*/);
+     // alert("users/"+useruiname+"/"+habitkaname);
+      ref.on("child_added", snap => {
+          var strk = snap.child("streak").val();
+          alert(strk);
         });
-      }
+
+    }
   </script>
+    
+    
+  
   <body>
       
    <!-- <div id="sign-in-status"></div>
@@ -130,23 +147,59 @@
         </div>
       </nav>
     </header>
+   
     <form class="formclass" > 
         <h2>Add Habit</h2> 
         <div class="form-row">
           <div class="col">
-            <input id = "habit" type="text" class="form-control" placeholder="Habit name">
+              <input id = "useruiid" type="text" class="form-control" placeholder="Select a username">
           </div>
           <div class="col">
+            <input id = "habit" type="text" class="form-control" placeholder="Habit name">
+          </div>
+         <!-- <div class="col">
             <input id = "type" type="text" class="form-control" placeholder="Habit Type">
           </div>
+          <div class="col">
+              <input id = "habitnum" type="text" class="form-control" placeholder="Habit #">
+            </div>-->
         </div>
         <br>
         <button class="btn btn-info" type="submit" value="submit" onclick=" lala();">Add Habit</button>
       </form>
 
-      
+        <form class="formclass" > 
+            <h2>Enter username, habit, streak to update the streak</h2> 
+            <div class="form-row">
+              <div class="col">
+                  <input id = "useruiid3" type="text" class="form-control" placeholder="Username">
+              </div>
+              <div class="col">
+                  <input id = "habit3" type="text" class="form-control" placeholder="Habit Name">
+              </div>
+              <div class="col">
+                  <input id = "streak" type="text" class="form-control" placeholder="Streak">
+              </div>
+            </div>
+            <br>
+            <button class="btn btn-info" type="submit" value="submit" onclick=" updateHabit();">Update Habit</button>
+        </form>
+        <form class="formclass" > 
+            <h2>Enter username and habit name to display a habit</h2> 
+            <div class="form-row">
+              <div class="col">
+                  <input id = "useruiid2" type="text" class="form-control" placeholder="Username">
+              </div>
+              <div class="col">
+                  <input id = "habit2" type="text" class="form-control" placeholder="Habit Name">
+              </div>
+            </div>
+            <br>
+            <button class="btn btn-info" type="submit" value="submit" onclick=" refresh();">Display Habit</button>
+          </form>
       <div class="habitclass">
-          <h2>Habits </h2>
+          <h2>Habit </h2>
+          <h2 id="habitdisplay"></h2>
       </div>
     <!-- Begin page content -->
    <!-- <main role="main" align="center" class="container">
